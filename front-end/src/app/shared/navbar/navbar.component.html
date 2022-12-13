@@ -1,0 +1,49 @@
+
+
+<nav class="navbar navbar-expand-lg fixed-top" style="background-color: rgb(54, 74, 54);">
+ 
+    <div class="container">
+
+        <a class="navbar-brand text-white" routerLink="" > <img src="assets/images/BlogLogo.png" style="width:8rem; "
+                alt="logo of blog post"> 
+        </a>
+
+        <button class="navbar-toggler border border-0" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span>
+                <i class="fa fa-ellipsis-h text-white " aria-hidden="true"></i>
+            </span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link text-white fs-5 mx-2" aria-current="page" routerLink=""> Home</a>
+                </li>
+            
+
+                <li class="nav-item" *ngIf="auth.loginFlag">
+                    <a class="nav-link text-white fs-5 mx-2" routerLink="/user/profile/{{userId}}">profile</a>
+                </li>
+
+                <li class="nav-item" *ngIf="auth.loginFlag">
+                    <a class="nav-link text-white logoutHover fs-5 " routerLink="/user/login" (click)="handleLogOut()"> Log out</a>
+                </li>
+
+                <li class="nav-item" *ngIf="!auth.loginFlag">
+                    <a class="nav-link text-white fs-5 mx-2" routerLink="/user/login"> Log In</a>
+                </li>
+
+                <li class="nav-item" *ngIf="!auth.loginFlag">
+                    <a class="nav-link text-white fs-5 " routerLink="/user/signup">Sign Up</a>
+                </li>
+
+            </ul>
+         
+
+        </div>
+
+    </div>
+
+</nav>

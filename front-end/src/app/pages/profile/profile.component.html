@@ -1,0 +1,123 @@
+
+<button class="toggleSideBar" (click)="toggleSideBar()"><i class="fa-solid fa-bars"></i></button>
+<section class="profile">
+
+<nav
+id="sidebarMenu"
+class="d-lg-block sidebar  bg-success"
+*ngIf="sideBarFlag"
+>
+<button class="toggleSideBarExit" (click)="toggleSideBar()">x</button>
+<div class="position-sticky mx-3" >
+    <div class="cont">
+        <img *ngIf="user?.image" src="http://localhost:3000/{{user?.image.replace('public','')}}"
+            class=" border border-3 border-dark rounded-circle " alt="">
+
+        <img *ngIf="!user?.image" src="assets/images/user-profile-icon.webp" class="col-12">
+
+    <button class="button" (click)="uploadImage()">upload new image</button>
+
+    </div>
+
+    <form *ngIf="imgUploadFlag" #uploadImage="ngForm" (ngSubmit)="handleUploadImageForm()" class="col-6 mt-4">
+        <div>
+            <label for="formFile" class="uploadImageLabel">upload Profile image</label>
+             <input class="form-control mb-3" type="file" id="formFile"  name="image" (change)="handleUploadImage($event)">
+          </div>
+          <button class="btn btn-success  uploadImageButton">upload new image</button>
+    </form>
+
+    <p class="text-white fs-5 mx-3 mt-2">WELCOME {{user?.name}}</p>
+
+<div class="text-white">
+
+ <a
+    (click)="myPostsShow()"
+    class="list-group-item list-group-item-action py-2 ripple cursor"
+    aria-current="true"
+    >
+    <i class="fa-brands fa-hive mx-1"></i><span> My Posts</span>
+ </a>
+
+ <a
+ (click)="mySavedPostsShow()"
+ class="list-group-item list-group-item-action py-2 ripple cursor"
+ aria-current="true"
+ >
+ <i class="fa-regular mx-1 fa-bookmark"></i><span> Saved Posts</span>
+</a>
+
+ <a
+ routerLink="/addPost"
+  class="list-group-item list-group-item-action py-2 ripple cursor"
+  ><i class="fa-solid mx-1 fa-plus"></i><span>
+  Add Post</span></a
+ >
+
+ <a
+ routerLink="/user/editProfile/{{user?._id}}"
+  class="list-group-item list-group-item-action py-2 ripple cursor"
+  ><i class="fa-solid mx-1 fa-pen-to-square"></i><span>
+   edit profile</span></a
+ >
+
+ <a
+    routerLink="/user/changePassword/{{user?._id}}"
+    class="list-group-item list-group-item-action py-2 ripple cursor"
+    ><i class="fa-solid mx-1 fa-lock"></i><span> change my Password</span></a
+   >
+   
+
+ 
+ <a
+   (click)="logOutAll()"
+    class="list-group-item list-group-item-action py-2 ripple cursor"
+    >
+    <i class="fa-solid mx-1 fa-right-from-bracket"></i><span> logout from all devices</span>
+ </a>
+
+ <a
+    (click)="deleteAccount()"
+    class="list-group-item list-group-item-action py-2 ripple cursor"
+    ><i class="fa-solid mx-1 fa-trash"></i><span>   delete your account</span></a
+   >
+</div>
+</div>
+</nav> 
+
+
+ <div class="profileContent">
+
+    <div *ngIf="profileContentFlag" class="myPosts">
+        <h1 class="myPostsHeader mb-5">my posts</h1>
+        <h1 *ngIf="myPosts.length == 0" class="text-white text-center"> you have no uploaded posts yet</h1>
+    <div *ngFor="let post of myPosts; let i = index" class="row align-items-center my-2">
+        <div class="col-3">
+        <p class="text-white">TITLE : {{post?.title}}</p>
+        <p class="text-white">SNIPPET : {{post?.snippet}}</p>
+       </div>
+       <div class="col-3">
+    <button class="btn btn-primary mx-2 " routerLink="/editPost/{{post._id}}"> edit</button>
+    <button class="btn btn-danger "  (click)="handlePostDelete(post._id,i)">delete</button>
+</div>
+    </div>
+  </div>
+<div *ngIf="!profileContentFlag" class="myPosts">
+    <h1 class="myPostsHeader mb-5">saved posts</h1>
+    <h1 *ngIf="savedPosts.length == 0" class="text-white text-center"> you have no saved posts yet</h1>
+    <div *ngFor="let savedPost of savedPosts" class="row align-items-center my-2">
+        <div class="col-3">
+            <h5 class="text-white">{{savedPost.title}}</h5>
+            <p class="text-white">{{savedPost.snippet}}</p>
+            <p class="text-white">written by {{savedPost.author}}</p>
+           </div>
+     
+
+     <div class="col-3">
+        <button class="btn btn-primary mx-2 " routerLink="/readPost/{{savedPost.postId}}"> show</button>
+        <button class="btn btn-danger "  (click)="deleteSavedPost(savedPost._id)">delete</button>
+    </div>
+    </div>
+</div>
+</div>
+</section>

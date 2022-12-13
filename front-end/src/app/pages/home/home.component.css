@@ -1,0 +1,91 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
+
+.home{
+  margin-top: 10%;
+}
+.recentPostsHeader{
+    padding:0.4em 0.5em 0.7em 0.2em;
+    border-radius: 0px 20px 200px 0px;
+    width:30%;
+    margin-bottom: 1em;
+}
+.recentPostsCard{
+    position: relative;
+    border: 0;
+    border-radius: 0;
+    border-top: 2px solid green ;
+    margin-bottom: 3em;
+}
+.recentPostsTitle{
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+.recentPostsSnippet{
+    font-family: 'Bungee Spice', cursive;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+.recentPostsContent{
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+.recentPostsCategory{
+    position: absolute;
+    background-color: green;
+    color: white;
+    right: 0%;
+    top: -1%;
+    padding: 1em;
+    border-radius: 0px 0px 15px 15px;
+}
+.writtenByRecent{
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+.recentPostAuthor{
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 1rem;
+    font-weight: bold;
+    color:#E26E20 ;
+}
+.readPost{
+    cursor: pointer;
+}
+
+.readPost:hover{
+    color:rgb(20, 208, 20)
+}
+
+
+.hoverCategory:hover{
+    opacity: 0.8;
+    cursor: url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' style='font-size: 24px'><text y='20'>🔍</text></svg>"), auto;
+}
+.trendPosts{
+    border-left: 2px solid green;
+    position: relative;
+}
+
+.trendPostsHeader{
+    position: absolute;
+    left: 0px;
+    padding:0.4em 0.7em 0.7em 0.2em;
+    border-radius: 0px 20px 200px 0px;
+}
+
+.trendCards{
+    margin-top: 5em;
+}
+
+.trendPostCard{
+    margin-top: 2em;
+}

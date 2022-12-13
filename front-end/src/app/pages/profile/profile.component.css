@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,500;1,400&display=swap');
+
+.cont {
+   position: relative;
+    width:40%;
+  } 
+  
+
+   .cont img {
+  
+     width: 200px;
+     height: 200px;
+  } 
+  
+
+ 
+   .cont .button{
+    position: absolute;
+    display:none;
+    
+    top: 75%;
+    left: 92%;
+    
+    transform: translate(-50%, -50%);
+    background-color: #555;
+    color: rgb(203, 38, 65);
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    height: 50%;
+    width: 198px;
+    border-radius: 0 0 100px 100px;
+  }
+  
+  .cont:hover > .button{
+    display: block;
+    background-color: black;
+    opacity: 0.8;
+
+  } 
+
+   .cursor{
+    cursor: pointer;
+  }
+
+  .cursor:hover{
+    opacity: 0.6;
+  }
+  .toggleSideBar{
+   position: absolute;
+   display: block;
+   border: 0;
+   color: white;
+   background-color: transparent;
+   left: 3%;
+   top: 5.2%;
+   margin-top: 1em;
+   font-size: 1.5rem;
+   z-index: 10000;
+  }
+  .toggleSideBarExit{
+    position: absolute;
+    display: none;
+    border: 0;
+    right:5%;
+    top: 0;
+    color: white;
+    background-color: transparent;
+    font-size: 1.5rem;
+    z-index: 800;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 20.3%;
+    bottom: 0;
+    left: 0;
+    padding: 58px 0 0; 
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+    width: 300px;
+    z-index: 600;
+    overflow-x: hidden;
+    overflow-y: auto; 
+  }
+  
+  .sidebar .active {
+    border-radius: 5px;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+  }
+
+  .sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 48px);
+    padding-top: 0.5rem;
+    /* Scrollable contents if viewport is shorter than content. */
+    }
+
+  .profileContent{
+    margin-left: 19.5%;
+    margin-top: 10%;
+  }
+  .uploadImageLabel{
+    font-family: 'Ubuntu', sans-serif ;
+    margin-bottom: 1em;
+  }
+.uploadImageButton{
+    font-family: 'Ubuntu', sans-serif ; 
+  }
+  .myPosts{
+    background-color: #555;
+    padding: 2em;
+  }
+  .myPostsHeader{
+    color: white;
+    font-family: 'Ubuntu', sans-serif ; 
+  }
+  @media only screen and (max-width: 1000px){
+  
+   .profileContent{
+   margin-left: 20%;
+   }
+ 
+   }
+ 
+
+  @media only screen and (max-width: 850px){
+   .sidebar{
+    width: 100%;
+    text-align: center;
+  
+   }
+  .toggleSideBarExit{
+    display: block;
+   }
+
+   .cont .button{
+    left: 128%;
+  }
+  .cont img {
+  margin-left: 90%;
+ } 
+ 
+
+
+  }
+
+
+
+
+
+

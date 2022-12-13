@@ -1,0 +1,35 @@
+<!-- template driven form -->
+<section class="signUp">
+<form class="row" #signUp="ngForm" (ngSubmit)="handleSignUp(signUp)">
+   
+    <div class="col-12 col-md-6">
+        <input type="text" name="name" placeholder="enter your name" class="form-control" [(ngModel)]="userData.name" #name="ngModel" required minlength="3" maxlength="25">
+
+        <div class="alert alert-danger" *ngIf="(signUp.submitted || name.dirty) && name.invalid" >
+          <div *ngIf="name.errors?.['required']"> name is required</div>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+        <input type="text" name="age" placeholder="enter your age" class="form-control" [(ngModel)]="userData.age" #age="ngModel" required>
+    </div>
+
+    <div class="col-12 col-md-6">
+        <input type="email" name="email" placeholder="enter your email" class="form-control" [(ngModel)]="userData.email" #email="ngModel" required email>
+        <div class="alert alert-danger" *ngIf="email.invalid && (signUp.submitted || email.dirty)" >
+            <div *ngIf="email.errors?.['required']">
+                required input
+              </div>
+          <div *ngIf="email.errors?.['email']">
+            invalid email
+          </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+        <input type="password" name="password" placeholder="enter password" class="form-control" [(ngModel)]="userData.password" #password="ngModel" required>
+    </div>
+
+    <button class="btn btn-primary">Sign Up</button>
+</form>
+</section>

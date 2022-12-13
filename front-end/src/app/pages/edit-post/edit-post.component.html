@@ -1,0 +1,70 @@
+<section class="editPost">
+<form class="container mt-3" [formGroup]="editPostForm" (ngSubmit)="editPost()">
+    <div class="mb-3">
+
+      <label for="title" class="form-label">Title of your blog</label>
+      <input type="text" class="form-control" id="title" value="{{postOldData?.title}}" formControlName="title">
+
+      <div class="alert alert-danger" *ngIf="postData?.['title']?.invalid && isSubmit" >
+        <div *ngIf="postData?.['title']?.errors?.['required']">
+            title is required
+        </div>
+        <div *ngIf="postData?.['title']?.errors?.['minlength']">
+            title min. length 5 char.
+        </div>
+        <div *ngIf="postData?.['title']?.errors?.['maxlength']">
+            title max. length 15 char.
+        </div>
+     </div>
+
+    </div>
+
+    <div class="mb-3">
+      <label for="snippet" class="form-label">snippet (short describe to attract more people to your blog)</label>
+      <input type="text" class="form-control" id="snippet" value="{{postOldData?.snippet}}" formControlName="snippet">
+      <div class="alert alert-danger" *ngIf="postData?.['snippet']?.invalid && isSubmit" >
+        <div *ngIf="postData?.['snippet']?.errors?.['required']">
+            snippet is required
+        </div>
+        <div *ngIf="postData?.['snippet']?.errors?.['minlength']">
+            snippet min. length 5 char.
+        </div>
+        <div *ngIf="postData?.['snippet']?.errors?.['maxlength']">
+            snippet max. length 30 char.
+        </div>
+    </div>
+    </div>
+
+    <div class="form-floating">
+        <select class="form-select mb-3" id="floatingSelect" aria-label="Default select example" formControlName="category" value="{{postOldData?.category}}" >
+        <option value="programming">Programming</option>
+        <option value="science">Science</option>
+        <option value="political">Political</option>
+        <option value="finance">Finance</option>
+        <option value="social">Social</option>
+        <option value="other">Other</option>
+    </select>
+    <label for="floatingSelect">select category</label>
+    <div class="alert alert-danger" *ngIf=" postData?.['category']?.invalid && isSubmit" >
+        <div *ngIf="postData?.['category']?.errors?.['required']">
+            category is required
+        </div>
+    </div>
+    </div>
+    
+    <div class=" mb-3">
+        <textarea class="form-control" value="{{postOldData?.content}}"  style="height: 500px" formControlName="content"></textarea>
+     
+    </div>
+    <div class="alert alert-danger" *ngIf="postData?.['content']?.invalid && isSubmit" >
+        <div *ngIf="postData?.['content']?.errors?.['required']">
+            content is required
+        </div>
+        <div *ngIf="postData?.['content']?.errors?.['minlength']">
+            content min length is 1000 chars.
+        </div>
+    </div> 
+
+    <button type="submit" class="btn btn-primary me-auto">edit post</button>
+  </form>
+</section>

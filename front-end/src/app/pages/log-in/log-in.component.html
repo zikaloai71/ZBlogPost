@@ -1,0 +1,31 @@
+<div class="container login">
+
+<form class="row  mt-5 flex-wrap justify-content-center" #logIn="ngForm" (ngSubmit)="handleLogIn(logIn)">
+
+   <div class="alert alert-danger col-10 my-3" *ngIf=" errorMsg != '' ">
+    {{errorMsg}}
+   </div>  
+
+    <div class="col-10 my-3 ">
+        <input type="email" name="email" placeholder="enter your email" class="form-control" [(ngModel)]="userData.email" #email="ngModel" required email (input)="errorMsg=''">
+        <div class="alert alert-danger" *ngIf="email.invalid && (logIn.submitted || email.dirty)" >
+            <div *ngIf="email.errors?.['required']">
+                required input
+              </div>
+          <div *ngIf="email.errors?.['email']">
+            invalid email
+          </div>
+        </div>
+    </div>
+
+    <div class="col-10 my-3">
+        <input type="password" name="password" placeholder="enter password" class="form-control" [(ngModel)]="userData.password" #password="ngModel" required (input)="errorMsg=''">
+        <div class="alert alert-danger" *ngIf="password.invalid && (logIn.submitted || password.dirty)" >
+            <div *ngIf="password.errors?.['required']">
+                required input
+              </div>
+        </div>
+    </div>
+    <button class="btn btn-success  col-3">log In</button>
+</form>
+</div>

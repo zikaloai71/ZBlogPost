@@ -1,0 +1,15 @@
+<section class="editProfile"></section>
+<form class="row container" #editForm="ngForm" (ngSubmit)="handleEdit(editForm)">
+   
+    <div class="col-12 col-md-6">
+        <input type="text" name="name" value="{{userData.name}}" placeholder="enter your name" class="form-control" [(ngModel)]="userData.name" #name="ngModel" required minlength="3" maxlength="25" >
+    </div>
+
+    <div class="col-12 col-md-6">
+        <input type="text" name="age" value="{{userData.age}}" placeholder="enter your age" class="form-control" [(ngModel)]="userData.age" #age="ngModel" required>
+    </div>
+
+
+    <button class="btn btn-primary w-50">edit my Profile</button>
+</form>
+

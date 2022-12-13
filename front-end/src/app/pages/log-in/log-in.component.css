@@ -1,0 +1,7 @@
+.login{
+    margin-top: 20%;
+}
+.form-control:focus{
+    border-color: #5cb85c;  
+    box-shadow: 1px -1px 0px 5px rgba(98,202,65,0.28);
+} 

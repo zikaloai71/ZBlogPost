@@ -1,0 +1,116 @@
+<div *ngIf="loadingComp ; else data">
+    <app-loading-component></app-loading-component>
+</div>
+
+<ng-template #data>
+<section class="home">
+    <div *ngIf="postsData.length == 0 ; else home">
+        no posts to show
+    </div>
+
+    <ng-template #home>
+        <h3 class="container-fluid mt-3">categories</h3>
+        <div class="d-flex container-fluid mt-2 justify-content-between">
+            <div class="d-flex w-20">
+                <button class="border border-0 bg-success text-white py-2 rounded-4 mx-1 hoverCategory"
+                    (click)="searchBlog()">All</button>
+                <button class="border border-0 bg-success text-white rounded-4 mx-1 hoverCategory"
+                    (click)="searchBlog('science')">science</button>
+
+                <button class="border border-0 rounded-4  bg-success text-white mx-1 hoverCategory"
+                    (click)="searchBlog('programming')">programming</button>
+                <button class="border border-0 rounded-4 bg-success text-white  mx-1 hoverCategory"
+                    (click)="searchBlog('social')">social</button>
+                <button class="border border-0 rounded-4 bg-success text-white mx-1 hoverCategory"
+                    (click)="searchBlog('political')">political</button>
+                <button class="border border-0 rounded-4 mx-1 bg-success text-white  hoverCategory"
+                    (click)="searchBlog('finance')">finance</button>
+                <button class="border border-0 rounded-4 mx-1 bg-success text-white  hoverCategory"
+                    (click)="searchBlog('other')">other</button>
+            </div>
+            <form class="d-flex w-60" role="search">
+                <input class="form-control  mx-1 " type="search" name="search" placeholder="Search for a blog"
+                    aria-label="Search" [(ngModel)]="searchedText">
+                <button class="btn btn-success " type="submit" (click)="searchBlog()"><i class="fa fa-search"
+                        aria-hidden="true"></i>
+                </button>
+            </form>
+        </div>
+        <div class="row mx-0 my-5">
+            
+            <div class="col-7 recentPosts">
+                <h3 class="bg-success text-white recentPostsHeader">most recent</h3>
+                <div class="alert alert-danger" *ngIf="posts.length == 0"> no such blog</div>
+                <div *ngFor="let post of posts; let i = index">
+                    <div class="card recentPostsCard ">
+                        <div class="card-body">
+                            <h2 class="recentPostsTitle">{{post.title}}</h2>
+                            <h4 class="recentPostsSnippet">{{post.snippet}}</h4>
+
+                            <p class="fs-5 recentPostsCategory">{{post.category}}</p>
+
+
+                            <p class="recentPostsContent">{{post?.content.slice(0,80)}} <span class="readPost fs-2" routerLink="/readPost/{{post._id}}">
+                                    . . . </span></p>
+
+                         
+                            <div class="row mt-2 align-items-center justify-content-between">
+                                <p class="mt-2 col-6 writtenByRecent">written by <i class="fa fa-user-circle mx-1" aria-hidden="true"></i>
+                                    <span class="recentPostAuthor">{{post.author}}</span>
+                                </p>
+
+                            <i class="fa-regular fa-heart mx-1" [ngStyle]="{'color':post.flag ? 'red' : 'black' }"
+                                        (click)="likePost(post._id , i , $event)"></i>
+                                 
+                           
+                                  
+                                <p class="col-2 mt-2">
+                                    {{post?.likes?.length}}
+                                </p>
+                                <p class="col-2 mt-2"><i class="fa-regular fa-message mx-1"></i>{{post?.comments?.length}}
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-5 trendPosts">
+
+                <h3 class="bg-success text-white trendPostsHeader ">most liked</h3>
+                <div class="trendCards">
+                <div *ngFor="let post of trendPosts(); let i = index" class="trendPostCard" >
+                    <div class="card trendPostCard">
+                        <div class="card-body">
+                            <h2 class="recentPostsTitle">{{post.title}}</h2>
+                            <h4 class="recentPostsSnippet">{{post.snippet}}</h4>
+                            <p class="recentPostsContent">{{post?.content.slice(0,80)}} <span class="readPost fs-2" routerLink="/readPost/{{post._id}}">
+                                    . . . </span></p>
+
+                         
+                            <div class="row mt-2 align-items-center justify-content-between">
+                                <p class="mt-2 col-8 writtenByRecent">written by <i class="fa fa-user-circle mx-1" aria-hidden="true"></i>
+                                    <span class="recentPostAuthor">{{post.author}}</span>
+                                </p>
+
+                                <p class="col-2 mt-2">
+                                    <i class="fa-regular fa-heart mx-1"
+                                        [ngStyle]="{'color': post.flag ? 'red' : 'black' }"
+                                        (click)="likePost(post._id , i , $event)"></i>{{post?.likes?.length}}
+                                </p>
+
+                                <p class="col-2 mt-2"><i class="fa-regular fa-message mx-1"></i>{{post?.comments?.length}}
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    
+    </ng-template>
+</section>
+</ng-template>
