@@ -10,10 +10,10 @@ export class GlobalService {
   constructor(private http:HttpClient) { }
   
   getPosts(){
-    return this.http.get("http://localhost:3000/post/allPosts")
+    return this.http.get("https://zblogpost.onrender.com/post/allPosts")
   }
 
   getSinglePost(id:any): Observable <any>{
-    return this.http.get(`http://localhost:3000/post/readPost/${id}`)
+    return this.http.get(`https://zblogpost.onrender.com/post/readPost/${id}`)
   }
 }

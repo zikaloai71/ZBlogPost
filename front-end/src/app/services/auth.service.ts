@@ -6,7 +6,7 @@ import {Observable} from "rxjs"
 })
 export class AuthService {
   
-  urlPath='http://localhost:3000/'
+  urlPath='https://zblogpost.onrender.com/'
 
   public loginFlag = false 
 
