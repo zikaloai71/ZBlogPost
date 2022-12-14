@@ -1,5 +1,4 @@
 # ZBlogPost
-This repo is for the whole mean stack project to run it you must : </br>
-1- clone the repo `git clone https://github.com/zikaloai71/ZBlogPost.git`.</br>
-2- enter the back-end directory by enter `cd /back-end` then install all dependencies by enter `npm install` then run it by enter `npm start`.</br>
-3- enter the front-end directory by enter `cd /front-end` then install all dependencies by enter `npm install` then run it by enter `ng serve -o`.
+A mean stack project for a blog post website where you can add different posts on different categories search for certain posts or even saved you favourite ones. </br>
+You can support other posts by like it or even add comment and start discussion about any thing that seem interset to you in the post. </br>
+In your profile you can add a picture for you change and edit your password and basic information you can check this and more on the demo website from this link --> **https://zblog-post.web.app/**
