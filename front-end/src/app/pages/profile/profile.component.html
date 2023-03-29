@@ -10,7 +10,7 @@ class="d-lg-block sidebar  bg-success"
 <button class="toggleSideBarExit" (click)="toggleSideBar()">x</button>
 <div class="position-sticky mx-3" >
     <div class="cont">
-        <img *ngIf="user?.image" src="http://localhost:3000/{{user?.image.replace('public','')}}"
+        <img *ngIf="user?.image" src="https://zblogpost.onrender.com/{{user?.image.replace('public','')}}"
             class=" border border-3 border-dark rounded-circle " alt="">
 
         <img *ngIf="!user?.image" src="assets/images/user-profile-icon.webp" class="col-12">

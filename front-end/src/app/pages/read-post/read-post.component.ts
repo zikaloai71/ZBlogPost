@@ -54,6 +54,7 @@ export class ReadPostComponent implements OnInit {
        this.saveFlag = false;
       }
       const i = this.likedPosts.findIndex((savePost:any)=>savePost.postId==this.postId)
+     
       if(i>=0){
       this.likeFlag= true;
       }
@@ -94,7 +95,7 @@ export class ReadPostComponent implements OnInit {
 
   }
   likePost(ev: any) {
-    this.auth.toogleLike(this.postId).subscribe((res) => {
+    this.auth.toggleLike(this.postId).subscribe((res) => {
       if (res.message == "liked") {
         this.post.likes.length += 1;
         ev.target.style.color = "red";

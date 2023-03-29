@@ -6,11 +6,13 @@ import {Observable} from "rxjs"
 })
 export class AuthService {
   
-  urlPath='https://zblogpost.onrender.com/'
+  urlPath= window.location.href==="http://localhost:4200/"?'http://localhost:3000/' : 'https://zblogpost.onrender.com/'
 
   public loginFlag = false 
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient) {
+  
+   }
 
   signUp(obj:any):Observable <any>{
     return this.http.post(`${this.urlPath}user/signUp`, obj)
@@ -53,7 +55,7 @@ export class AuthService {
     return this.http.patch(`${this.urlPath}user/me/editPassword`,obj)
   }
   
-  toogleLike(id:any) : Observable <any> {
+  toggleLike(id:any) : Observable <any> {
     return this.http.post(`${this.urlPath}post/readPost/toggleLike/${id}`, null)
   }
  

@@ -10,40 +10,51 @@ import { GlobalService } from "src/app/services/global.service";
 export class HomeComponent implements OnInit {
   posts: any = [];
   postsData: any = [];
+  trends: any = [];
   loadingComp: boolean = true;
   searchedText: string = "";
   likedPosts: any;
   likedFlag: any;
-  trends:any
-  userId:any
+  userId: any
+  userName: any
 
   constructor(private global: GlobalService, private auth: AuthService) {
-    let token = localStorage.getItem('token')
-    if(token){
-      this.auth.authMe().subscribe((res) => {
-        this.likedPosts = res.likedPosts;
-        this.userId= res._id
-        console.log(this.userId)
-      });
-    }
-    
+
+
+
   }
 
   ngOnInit(): void {
-   
+
+
+    let token = localStorage.getItem('token')
+    if (token) {
+
+      this.auth.authMe().subscribe((res) => {
+
+        this.likedPosts = res.likedPosts;
+        this.userId = res._id
+        this.userName = res.name
+        this.getPosts();
+
+      });
+
+    }
+
+  }
+  getPosts(){
     this.global.getPosts().subscribe(
       (data) => {
         this.postsData = data;
         this.postsData = this.postsData.data;
         this.posts = this.postsData;
-        this.trends= this.postsData.slice();
-        this.posts[0].likes.forEach((like:any)=>console.log(like))
-      
-        this.postsData.forEach((element: any) => {
-          element.flag = false;
-          this.determineLikedPosts(element);
+
+        this.posts.forEach((post: any) => {
+          
+       this.determineLikedPosts(post)
+    
         });
-       
+
       },
       (err) => {
         console.log(err);
@@ -52,9 +63,9 @@ export class HomeComponent implements OnInit {
         this.loadingComp = false;
       }
     );
-   
-  }
 
+
+  }
   searchBlog(args?: string) {
     if (args) {
       this.posts = this.postsData.filter((pos: any) => pos.category == args);
@@ -71,34 +82,38 @@ export class HomeComponent implements OnInit {
   }
 
   likePost(id: any, i: any, ev: any) {
-    this.auth.toogleLike(id).subscribe((res) => {
-      
+
+    this.auth.toggleLike(id).subscribe((res) => {
+      this.posts[i].likes = res.data.likes
       if (res.message == "liked") {
-        this.posts[i].likes.length += 1;
         ev.target.style.color = "red";
       } else {
-        this.posts[i].likes.length -= 1;
         ev.target.style.color = "black";
       }
     });
   }
-  
-  determineLikedPosts(element: any) {
-    for (let i = 0; i < this.likedPosts?.length; i++) {
-      if (this.likedPosts[i].postId == element._id) {
-        element.flag = true;
+
+  determineLikedPosts(post: any) {
+    for (let i = 0; i < post.likes.length; i++) {
+
+      if (this.userName == post.likes[i].luName) {
+        post.flag = true;
+
         break;
       } else {
-        element.flag = false;
+        post.flag = false;
+
       }
     }
+
   }
 
-  trendPosts(){
-    this.trends = this.trends.sort(function(a:any,b:any){
+  trendPosts() {
+   let trends = this.posts.sort(function (a: any, b: any) {
       return b.likes.length - a.likes.length
     });
-    this.trends=this.trends.slice(0,10) 
-    return this.trends
+    trends = trends.slice(0, 10)
+
+    return trends
   }
 }
