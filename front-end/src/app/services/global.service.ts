@@ -6,8 +6,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class GlobalService {
-  urlPath= window.location.href==="http://localhost:4200/"?'http://localhost:3000/' : 'https://zblogpost.onrender.com/'
-  constructor(private http:HttpClient) { }
+
+  urlPath = window.location.href==="http://localhost:4200/" ? 'http://localhost:3000/' : 'https://zblogpost.onrender.com/'
+
+  constructor(private http:HttpClient) { 
+   
+  }
   
   getPosts(){
     return this.http.get(`${this.urlPath}post/allPosts`)

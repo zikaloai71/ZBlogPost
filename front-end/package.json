@@ -20,7 +20,7 @@
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
     "bootstrap": "^5.2.1",
-    "firebase": "^9.15.0",
+    "firebase": "^9.18.0",
     "firebase-cli": "^1.2.0",
     "ngx-toastr": "^15.0.0",
     "rxjs": "~7.5.0",

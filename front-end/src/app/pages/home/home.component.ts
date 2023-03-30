@@ -29,18 +29,16 @@ export class HomeComponent implements OnInit {
 
     let token = localStorage.getItem('token')
     if (token) {
-
       this.auth.authMe().subscribe((res) => {
 
         this.likedPosts = res.likedPosts;
         this.userId = res._id
         this.userName = res.name
-        this.getPosts();
-
+  
       });
-
+   
     }
-
+    this.getPosts();
   }
   getPosts(){
     this.global.getPosts().subscribe(
@@ -49,7 +47,7 @@ export class HomeComponent implements OnInit {
         this.postsData = this.postsData.data;
         this.posts = this.postsData;
 
-        this.posts.forEach((post: any) => {
+       this.posts.forEach((post: any) => {
           
        this.determineLikedPosts(post)
     
