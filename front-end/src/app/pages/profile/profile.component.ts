@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
  savedPosts:any
  sideBarFlag = true;
  profileContentFlag = true
-
+ 
   constructor( public auth : AuthService ,private router:Router, private activated:ActivatedRoute , private toastr : ToastrService) { 
     this.userId = this.activated.snapshot.paramMap.get('id')
     this.auth.authMe().subscribe(data=>{
@@ -30,11 +30,11 @@ export class ProfileComponent implements OnInit {
       this.myPosts=this.myPosts.data
      
     })
-
+   
   }
 
   ngOnInit(): void {
- 
+   
   }
   toggleSideBar(){
     this.sideBarFlag=!this.sideBarFlag
@@ -63,7 +63,14 @@ export class ProfileComponent implements OnInit {
         window.location.reload();
       })
    }
-
+  handleImgSrc(){
+    if(window.location.hostname=== "localhost"){
+      return "http://localhost:3000"
+    }
+    else{
+      return "https://zblogpost.onrender.com"
+    }
+  }
   handlePostDelete(id:any,index:any){
     this.auth.deletePost(id).subscribe()
     this.myPosts.splice(index,1)

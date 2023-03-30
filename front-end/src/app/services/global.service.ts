@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class GlobalService {
 
-  urlPath = window.location.href==="http://localhost:4200/" ? 'http://localhost:3000/' : 'https://zblogpost.onrender.com/'
+  urlPath = window.location.hostname=== "localhost" ? 'http://localhost:3000/' : 'https://zblogpost.onrender.com/'
 
   constructor(private http:HttpClient) { 
    
